@@ -20,7 +20,7 @@ namespace IHCUsuario.Models
         [Required]
         [Display(Name = "Nome da Mãe")]
         [StringLength(100)]
-        public string? NomeMae { get; set; }
+        public string? NomeMae { get; set; } 
         
                 
     }
