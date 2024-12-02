@@ -15,5 +15,6 @@ namespace IHCUsuario.Data
         }
 
         public DbSet<IHCUsuario.Models.Cliente> Cliente { get; set; } = default!;
+
     }
 }
