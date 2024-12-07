@@ -54,7 +54,7 @@ namespace IHCUsuario.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,Nome,RG,CPF,Logradouro,Bairro,Cidade,Complemento,UF,CEP,EstadoCivil,NomePai,NomeMae")] Cliente cliente)
+        public async Task<IActionResult> Create([Bind("id,Nome,RG,CPF,Logradouro,Bairro,Cidade,Complemento,UF,CEP,EstadoCivil,NomePai,NomeMae,DataNascimento")] Cliente cliente)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace IHCUsuario.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,Nome,RG,CPF,Logradouro,Bairro,Cidade,Complemento,UF,CEP,EstadoCivil,NomePai,NomeMae")] Cliente cliente)
+        public async Task<IActionResult> Edit(int id, [Bind("id,Nome,RG,CPF,Logradouro,Bairro,Cidade,Complemento,UF,CEP,EstadoCivil,NomePai,NomeMae,DataNascimento")] Cliente cliente)
         {
             if (id != cliente.id)
             {

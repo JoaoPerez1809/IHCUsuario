@@ -1,36 +1,51 @@
 ﻿@model IEnumerable<IHCUsuario.Models.Cliente>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Clientes";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1 class="text-center">Lista de Clientes</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Adicionar Novo Cliente</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Nome)</th>
+                <th>@Html.DisplayNameFor(model => model.FirstOrDefault().RG)</th>
+                <th>@Html.DisplayNameFor(model => model.FirstOrDefault().CPF)</th>
+                <th>Endereço Residencial</th>
+                <th>@Html.DisplayNameFor(model => model.FirstOrDefault().DataNascimento)</th>
+                <th>@Html.DisplayNameFor(model => model.FirstOrDefault().EstadoCivil)</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                    <td>@Html.DisplayFor(modelItem => item.RG)</td>
+                    <td>@Html.DisplayFor(modelItem => item.CPF)</td>
+                    <td>
+                        @Html.Raw($@"CEP: {item.CEP}<br />
+                    Localidade: {item.Cidade}, {item.UF}, {item.Bairro}.<br />
+                    Logradouro: {item.Logradouro}<br />
+                    Complemento: {item.Complemento}")
+                    </td>
+                    <td>@item.DataNascimento.ToString("dd/MM/yyyy")</td>
+                    <td>@Html.DisplayFor(modelItem => item.EstadoCivil)</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.id" class="btn btn-info">Detalhes</a>
+                        <a asp-action="Edit" asp-route-id="@item.id" class="btn btn-warning">Editar</a>
+                        <a asp-action="Delete" asp-route-id="@item.id" class="btn btn-danger">Excluir</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
